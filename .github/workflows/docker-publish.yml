@@ -75,3 +75,12 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+          
+      - name: Log into Docker Container registry
+        run: echo "${{ secrets.DOCKER_PW }}" | docker login -u maymeow --password-stdin
+      
+      - name: Push to docker registry
+        run: |
+          docker tag "$IMAGE_ID" maymeow/php-ci-cd:latest
+          docker push maymeow/php-ci-cd:latest
+          
