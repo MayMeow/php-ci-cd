@@ -6,7 +6,7 @@ RUN curl -sSL https://deb.nodesource.com/setup_12.x | bash \
     && apt-get install --fix-missing -y nodejs unzip libicu-dev libpq-dev zlib1g-dev libpng-dev
 
 # Install PHP Extensions
-RUN docker-php-ext-install intl pdo_pgsql gd
+RUN docker-php-ext-install intl pdo_pgsql gd zip
 
 # PHP Pecl Redis extensions
 RUN pecl install redis
