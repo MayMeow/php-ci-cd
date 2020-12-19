@@ -52,6 +52,9 @@ jobs:
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      
+      - name: Login to Docker Registry
+        run: echo "${{ secrets.DOCKER_PW }}" | docker login -u "${{ secrets.DOCKER_USER }}" --password-stdin
 
       - name: Push image
         run: |
@@ -74,3 +77,7 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
+          
+          # and finally publish to Docker Hub registry
+          docker tag "$IMAGE_NAME" maymeow/php-ci-cd:$VERSION
+          docker push maymeow/php-ci-cd:$VERSION
