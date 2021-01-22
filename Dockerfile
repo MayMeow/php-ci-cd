@@ -35,6 +35,9 @@ RUN wget https://github.com/clue/phar-composer/releases/download/v1.1.0/phar-com
 RUN wget https://phar.phpunit.de/phpunit-7.0.3.phar \
     && chmod +x phpunit-7.0.3.phar \
     && mv phpunit-7.0.3.phar /usr/local/bin/phpunit
+    
+RUN pecl install xdebug \ 
+    && docker-php-ext-enable xdebug
 
 # Allow to create phars
 # RUN echo 'phar.readonly="0"' >> /etc/php/7.4/cli/conf.d/ci.ini
