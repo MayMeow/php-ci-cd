@@ -27,9 +27,9 @@ RUN curl -sSL https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer 
 
 # Add Phar composer
-RUN wget https://github.com/clue/phar-composer/releases/download/v1.1.0/phar-composer-1.1.0.phar \
-    && chmod +x phar-composer-1.1.0.phar \
-    && mv phar-composer-1.1.0.phar /usr/local/bin/phar-composer
+RUN wget https://github.com/clue/phar-composer/releases/download/v1.2.0/phar-composer-1.2.0.phar \
+    && chmod +x phar-composer-1.2.0.phar \
+    && mv phar-composer-1.2.0.phar /usr/local/bin/phar-composer
 
 ## PHPUnit install
 RUN wget https://phar.phpunit.de/phpunit-7.0.3.phar \
@@ -40,7 +40,8 @@ RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
+    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.mode=coverage" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 # Allow to create phars
 # RUN echo 'phar.readonly="0"' >> /etc/php/7.4/cli/conf.d/ci.ini
