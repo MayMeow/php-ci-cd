@@ -32,9 +32,9 @@ RUN wget https://github.com/clue/phar-composer/releases/download/v1.2.0/phar-com
     && mv phar-composer-1.2.0.phar /usr/local/bin/phar-composer
 
 ## PHPUnit install
-RUN wget https://phar.phpunit.de/phpunit-7.0.3.phar \
-    && chmod +x phpunit-7.0.3.phar \
-    && mv phpunit-7.0.3.phar /usr/local/bin/phpunit
+RUN wget https://phar.phpunit.de/phpunit-9.5.6.phar \
+    && chmod +x phpunit-9.5.6.phar \
+    && mv phpunit-9.5.6.phar /usr/local/bin/phpunit
     
 RUN pecl install xdebug \ 
     && docker-php-ext-enable xdebug \
