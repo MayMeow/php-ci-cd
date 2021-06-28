@@ -1,4 +1,4 @@
-FROM php:7.4.16-cli-buster
+FROM php:8.0.7-cli-buster
 
 # Install NodeJS and NPM
 RUN curl -sSL https://deb.nodesource.com/setup_12.x | bash \
