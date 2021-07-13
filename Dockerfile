@@ -31,6 +31,15 @@ RUN wget https://github.com/clue/phar-composer/releases/download/v1.2.0/phar-com
     && chmod +x phar-composer-1.2.0.phar \
     && mv phar-composer-1.2.0.phar /usr/local/bin/phar-composer
 
+# Codesniffer
+RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
+    && chmod +x phpcs.phar \
+    && mv phpcs.phar /usr/local/bin/phpcs
+
+RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
+    && chmod +x phpcbf.phar \
+    && mv phpcbf.phar /usr/local/bin/phpcbf
+
 ## PHPUnit install
 RUN wget https://phar.phpunit.de/phpunit-9.5.6.phar \
     && chmod +x phpunit-9.5.6.phar \
