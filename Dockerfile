@@ -40,13 +40,17 @@ RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
     && chmod +x phpcbf.phar \
     && mv phpcbf.phar /usr/local/bin/phpcbf
 
+RUN wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.0.0/php-cs-fixer.phar \
+    && chmod +x php-cs-fixer.phar \
+    && mv php-cs-fixer.phar /usr/local/bin/php-cs-fixer
+
 ## PHPUnit install
 RUN wget https://phar.phpunit.de/phpunit-7.0.3.phar \
     && chmod +x phpunit-7.0.3.phar \
     && mv phpunit-7.0.3.phar /usr/local/bin/phpunit
     
 RUN pecl install xdebug \ 
-    && docker-php-ext-enable xdebug \
+    # && docker-php-ext-enable xdebug \
     && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
