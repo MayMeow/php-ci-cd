@@ -1,4 +1,4 @@
-FROM php:8.0.7-cli-buster
+FROM php:7.4.16-cli-buster
 
 # Install NodeJS and NPM
 RUN curl -sSL https://deb.nodesource.com/setup_12.x | bash \
@@ -31,16 +31,25 @@ RUN wget https://github.com/clue/phar-composer/releases/download/v1.2.0/phar-com
     && chmod +x phar-composer-1.2.0.phar \
     && mv phar-composer-1.2.0.phar /usr/local/bin/phar-composer
 
+# Codesniffer
+RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
+    && chmod +x phpcs.phar \
+    && mv phpcs.phar /usr/local/bin/phpcs
+
+RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
+    && chmod +x phpcbf.phar \
+    && mv phpcbf.phar /usr/local/bin/phpcbf
+
 ## PHPUnit install
-RUN wget https://phar.phpunit.de/phpunit-9.5.6.phar \
-    && chmod +x phpunit-9.5.6.phar \
-    && mv phpunit-9.5.6.phar /usr/local/bin/phpunit
+RUN wget https://phar.phpunit.de/phpunit-7.0.3.phar \
+    && chmod +x phpunit-7.0.3.phar \
+    && mv phpunit-7.0.3.phar /usr/local/bin/phpunit
     
 RUN pecl install xdebug \ 
     && docker-php-ext-enable xdebug \
-    # && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
-    # && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    # && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.mode=coverage" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 # Allow to create phars
