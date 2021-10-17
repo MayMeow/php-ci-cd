@@ -1,4 +1,4 @@
-FROM php:8.0.7-cli-buster
+FROM php:8.0.11-cli-buster
 
 # Install NodeJS and NPM
 RUN curl -sSL https://deb.nodesource.com/setup_12.x | bash \
@@ -31,6 +31,19 @@ RUN wget https://github.com/clue/phar-composer/releases/download/v1.2.0/phar-com
     && chmod +x phar-composer-1.2.0.phar \
     && mv phar-composer-1.2.0.phar /usr/local/bin/phar-composer
 
+# Codesniffer
+RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
+    && chmod +x phpcs.phar \
+    && mv phpcs.phar /usr/local/bin/phpcs
+
+RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
+    && chmod +x phpcbf.phar \
+    && mv phpcbf.phar /usr/local/bin/phpcbf
+
+RUN wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.0.0/php-cs-fixer.phar \
+    && chmod +x php-cs-fixer.phar \
+    && mv php-cs-fixer.phar /usr/local/bin/php-cs-fixer
+
 ## PHPUnit install
 RUN wget https://phar.phpunit.de/phpunit-9.5.6.phar \
     && chmod +x phpunit-9.5.6.phar \
@@ -46,6 +59,7 @@ RUN pecl install xdebug \
 # Allow to create phars
 # RUN echo 'phar.readonly="0"' >> /etc/php/7.4/cli/conf.d/ci.ini
 RUN echo 'phar.readonly=0' >> /usr/local/etc/php/conf.d/docker-php-phar-readonly.ini
+RUN echo "memory_limit=1024M" >> /usr/local/etc/php/conf.d/docker-php-memory-limit.ini
 
 # Clean
 RUN apt autoremove --purge \
