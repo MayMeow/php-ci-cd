@@ -3,7 +3,7 @@ FROM php:8.0.11-cli-buster
 # Install NodeJS and NPM
 RUN curl -sSL https://deb.nodesource.com/setup_12.x | bash \
     && apt-get update \
-    && apt-get install --fix-missing -y nodejs unzip libicu-dev libpq-dev zlib1g-dev libpng-dev libzip-dev
+    && apt-get install --fix-missing -y nodejs unzip libicu-dev libpq-dev zlib1g-dev libpng-dev libzip-dev git
 
 # Install PHP Extensions
 RUN docker-php-ext-install intl pdo_pgsql gd zip pdo_mysql
