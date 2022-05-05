@@ -1,4 +1,4 @@
-FROM php:8.0.17-cli-buster
+FROM php:8.1.5-cli-buster
 
 # Install NodeJS and NPM
 RUN curl -sSL https://deb.nodesource.com/setup_12.x | bash \
@@ -27,9 +27,9 @@ RUN curl -sSL https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer 
 
 # Add Phar composer
-RUN wget https://github.com/clue/phar-composer/releases/download/v1.2.0/phar-composer-1.2.0.phar \
-    && chmod +x phar-composer-1.2.0.phar \
-    && mv phar-composer-1.2.0.phar /usr/local/bin/phar-composer
+RUN wget https://github.com/clue/phar-composer/releases/download/v1.4.0/phar-composer-1.4.0.phar \
+    && chmod +x phar-composer-1.4.0.phar \
+    && mv phar-composer-1.4.0.phar /usr/local/bin/phar-composer
 
 # Codesniffer
 RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
@@ -40,14 +40,14 @@ RUN wget https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
     && chmod +x phpcbf.phar \
     && mv phpcbf.phar /usr/local/bin/phpcbf
 
-RUN wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.0.0/php-cs-fixer.phar \
+RUN wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.8.0/php-cs-fixer.phar \
     && chmod +x php-cs-fixer.phar \
     && mv php-cs-fixer.phar /usr/local/bin/php-cs-fixer
 
 ## PHPUnit install
-RUN wget https://phar.phpunit.de/phpunit-9.5.6.phar \
-    && chmod +x phpunit-9.5.6.phar \
-    && mv phpunit-9.5.6.phar /usr/local/bin/phpunit
+RUN wget https://phar.phpunit.de/phpunit-9.5.20.phar \
+    && chmod +x phpunit-9.5.20.phar \
+    && mv phpunit-9.5.20.phar /usr/local/bin/phpunit
     
 RUN pecl install xdebug \ 
     && docker-php-ext-enable xdebug \
