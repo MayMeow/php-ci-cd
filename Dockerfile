@@ -44,6 +44,12 @@ RUN wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.8.0/p
     && chmod +x php-cs-fixer.phar \
     && mv php-cs-fixer.phar /usr/local/bin/php-cs-fixer
 
+## PSALM
+
+RUN wget https://github.com/vimeo/psalm/releases/latest/download/psalm.phar \
+    && chmod +x psalm.phar \
+    && mv psalm.phar /usr/local/bin/psalm
+
 ## PHPUnit install
 RUN wget https://phar.phpunit.de/phpunit-9.5.20.phar \
     && chmod +x phpunit-9.5.20.phar \
@@ -71,4 +77,5 @@ RUN php -v \
     && phpunit --version \
     && node -v \
     && npm -v \
-    && phar-composer --version
+    && phar-composer --version \
+    && psalm --version
