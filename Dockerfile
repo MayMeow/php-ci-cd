@@ -46,7 +46,7 @@ RUN wget https://github.com/FriendsOfPHP/PHP-CS-Fixer/releases/download/v3.8.0/p
 
 ## PSALM
 
-RUN wget https://github.com/vimeo/psalm/releases/latest/download/psalm.phar \
+RUN wget https://github.com/vimeo/psalm/releases/download/4.23.0/psalm.phar \
     && chmod +x psalm.phar \
     && mv psalm.phar /usr/local/bin/psalm
 
