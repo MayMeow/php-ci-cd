@@ -1,3 +1,5 @@
+:warning: THis repository is no longer maintained, Use **SDK** image from [MayMeow/php](https://github.com/MayMeow/php)
+
 # 📦 PHP CI/CD container image
 
 This is docker image for ci/cd which i using in almost all my projects.
